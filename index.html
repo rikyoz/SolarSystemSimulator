@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Solar System Simulator v0.1</title>
+        <meta name="description" content="Solar System Simulator written using Three.js"/>
+        <meta name="author" content="Riccardo Ostani"/>
+        <link rel="shortcut icon" href="about:blank">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Orbitron:400" rel="stylesheet"/>
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div id="loading-screen">
+            <p id="loading-logo" class="logo">
+                Solar System Simulator <sup>v0.1</sup>
+            </p>
+            <progress id="loading-bar"></progress>
+            <p id="loading-text">Loading</p>
+        </div>
+        <div id="datetime-menu" class="menu">
+            <div id="datetime-bar">
+                <div id="simulation-btn" class="button">
+                    <span class="tooltip tooltip-bottom">Play</span>
+                    <a href="#" class="fas fa-fw fa-play"></a>
+                </div>
+                <div id="current-datetime"></div>
+                <div id="datetime-btn" class="button">
+                    <span class="tooltip tooltip-bottom">Simulation settings</span>
+                    <a href="#" class="fas fa-fw fa-calendar-alt"></a>
+                </div>
+            </div>
+            <div id="datetime-settings" class="settings">
+                <div id="datetime-form">
+                    <label>Date: <input type="date" id="date-picker" /></label>
+                    &nbsp;
+                    <label>Time: <input type="time" step="1" id="time-picker"/></label>
+                    <br/>
+                    <button id="set-datetime-btn">Set</button>
+                    &nbsp;
+                    <button id="current-datetime-btn">Current</button>
+                </div>
+                <br/>
+                <label>Time scale: 1 sim. sec. = <span id="time-scale-label"></span><br/>
+                    <input type="range" min="1" max="9" value="4" step="1" id="simulation-speed">
+                </label>
+            </div>
+        </div>
+        <div id="settings-menu" class="menu settings">
+            <label>Objects size scale: <span id="scale-value">10x</span>
+                <input type="range" min="1" max="100" value="10" step="1" id="scale-range">
+            </label>
+            <fieldset>
+                <legend>Visible objects</legend>
+                <label><input type="checkbox" id="inner-planets" name="inner-planets" checked> Inner planets</label>
+                <label><input type="checkbox" id="asteroid-belt" name="asteroid-belt" checked> Asteroid belt</label>
+                <label><input type="checkbox" id="outer-planets" name="outer-planets" checked> Outer planets</label>
+                <label><input type="checkbox" id="dwarf-planets" name="dwarf-planets" checked> Dwarf planets</label>
+                <br/>
+                <label><input type="checkbox" id="stars" name="stars" checked> Background stars</label>
+                <label><input type="checkbox" id="moon" name="moons" checked> Moon</label>
+                <label><input type="checkbox" id="hubble" name="hubble"> Hubble</label>
+                <label><input type="checkbox" id="tesla" name="tesla"> Tesla Roadster</label>
+            </fieldset>
+            <fieldset>
+                <legend>Display</legend>
+                <label><input type="checkbox" id="orbits" name="orbits" checked> Orbits</label>
+                <label><input type="checkbox" id="labels" name="labels" checked> Labels</label>
+                <label><input type="checkbox" id="stats" name="states" checked> Stats</label>
+                <label><input type="checkbox" id="habitable" name="habitable"> Habitable Zone</label>
+                <label><input type="checkbox" id="debug" name="states"> Debug helpers</label>
+            </fieldset>
+            <fieldset>
+                <legend>Camera</legend>
+                <label>Look at:
+                    <select id="look-at" name="look-at">
+                        <option value="inner_system">Inner Solar System</option>
+                        <option value="entire_system">Entire Solar System</option>
+                    </select>
+                    (camera target)
+                    <br/>
+                </label>
+                <label id="look-from-label">
+                    <input type="checkbox" id="enable-look-from" name="enable-look-from" /> Look from <span id="look-from"></span>
+                    <br/>
+                </label>
+                <label id="follow-target-label">
+                    <input type="checkbox" id="follow-target" name="follow-target" checked> Follow target
+                </label>
+            </fieldset>
+            <p class="logo">
+                Solar System Simulator <sup>v0.1</sup>
+            </p>
+        </div>
+        <div id="settings-btn" class="button">
+            <span class="tooltip tooltip-left">Settings</span>
+            <a href="#" class="fas fa-cog"></a>
+        </div>
+        <!-- External Libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/91/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+        <script src="https://cdn.rawgit.com/mrdoob/three.js/r91/examples/js/controls/OrbitControls.js"></script>
+        <script src="https://cdn.rawgit.com/spite/THREE.MeshLine/master/src/THREE.MeshLine.js"></script>
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123879/xRingGeometry.js"></script>
+        <!-- Simulator Project Scripts -->
+        <script src="js/OrbitUtils.js" type="text/javascript"></script>
+        <script src="js/SolarSysUtils.js" type="text/javascript"></script>
+        <script src="js/SolarSysObj.js" type="text/javascript"></script>
+        <script src="js/Star.js" type="text/javascript"></script>
+        <script src="js/OrbitingObj.js" type="text/javascript"></script>
+        <script src="js/NaturalObj.js" type="text/javascript"></script>
+        <script src="js/ArtificialObj.js" type="text/javascript"></script>
+        <script src="js/PlanetRings.js" type="text/javascript"></script>
+        <script src="js/AsteroidBelt.js" type="text/javascript"></script>
+        <script src="js/Simulator.js" type="text/javascript"></script>
+        <script src="js/UI.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $( document ).ready( function () {
+                let loadingMsg = $( "#loading-text" );
+                loadingMsg.html( "Loading textures data" );
+                Simulator.loadTextures( "data/textures.json", function ( textures ) {
+                    loadingMsg.html( "Loading bodies data" );
+                    Simulator.loadObjectsData( "data/bodies.json", textures, function ( data, minYear, maxYear ) {
+                        loadingMsg.html( "Initializing simulator" );
+                        Simulator.initialize( data, "sun", 200 * AU, maxYear );
+                        loadingMsg.html( "Initializing UI" );
+                        UI.initialize( data, minYear, maxYear );
+                        setTimeout( function () {
+                            $( "#loading-screen" ).fadeOut();
+                        }, 2000 );
+                    } );
+                } );
+            } );
+        </script>
+    </body>
+</html>

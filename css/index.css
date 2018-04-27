@@ -1,0 +1,335 @@
+/* TAG ELEMENTS STYLES */
+* {
+  font-family: 'Source Sans Pro', Arial, sans-serif; }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  overflow: hidden;
+  color: #aaa;
+  background-color: #000;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+html, body {
+  width: 100%;
+  height: 100%; }
+
+canvas {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  margin: 0; }
+
+a:link, a:hover, a:visited, a:active {
+  text-decoration: none !important; }
+
+a:visited, a:active {
+  color: rgba(255, 255, 255, 0.5) !important; }
+
+button {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #444;
+  padding: 2px 10px;
+  color: #aaa;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in; }
+  button:hover {
+    background-color: #aaa;
+    border-color: #aaa;
+    color: #000; }
+  button:focus {
+    outline: 0; }
+
+input[type="date"]::-webkit-clear-button, input[type="time"]::-webkit-clear-button {
+  display: none; }
+input[type="date"]::-ms-clear, input[type="time"]::-ms-clear {
+  display: none; }
+
+input[type="date"], input[type="time"], select {
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #444;
+  color: #aaa; }
+
+option {
+  color: #222; }
+
+fieldset {
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.075);
+  padding-bottom: 5px;
+  /* NOTE: this padding + checkboxes' margin-bottom gives a correct $spacing value */
+  margin-bottom: 10px; }
+  fieldset label {
+    margin-right: 10px; }
+    fieldset label:last-of-type {
+      margin-right: 0;
+      /* NOTE: to avoid double spacing on the right side of the fieldset! */ }
+
+label {
+  text-align: left !important; }
+  label br {
+    margin: 0 !important;
+    padding: 0;
+    line-height: 0;
+    visibility: hidden; }
+
+legend {
+  padding: 0.2em 0.5em;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #aaa;
+  font-size: 90%;
+  text-align: left;
+  background: black; }
+
+label input[type="checkbox"] {
+  position: relative;
+  vertical-align: middle;
+  bottom: 1px;
+  margin: 5px 0; }
+
+/* the trick to make cross-browser fill the left part of the slider is taken from https://codepen.io/noahblon/pen/OyajvN */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 2px;
+  background: #4a4a4a;
+  outline: none;
+  overflow: hidden;
+  /* NOTE: we hide the box-shadow of the thumb, obtaining the desired fill effect */
+  margin: 0; }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0;
+    height: 8px;
+    background: #aaa;
+    cursor: pointer;
+    box-shadow: -100vw 0 0 100vw #aaa; }
+  input[type="range"]::-moz-range-thumb {
+    width: 0;
+    height: 8px;
+    background: #aaa;
+    cursor: pointer;
+    box-shadow: -100vw 0 0 100vw #aaa; }
+  input[type="range"]::-moz-range-track {
+    height: 0; }
+
+/* CLASSES STYLES */
+.menu {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  position: absolute;
+  border: 1px solid #444; }
+
+.settings {
+  display: none;
+  font-size: 14px;
+  font-weight: 600; }
+
+.button {
+  padding: 0;
+  position: relative;
+  height: 24px; }
+  .button a {
+    font-size: x-large !important;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in; }
+    .button a:hover {
+      color: #ddd; }
+  .button:hover .tooltip {
+    visibility: visible; }
+    .button:hover .tooltip:hover {
+      visibility: hidden; }
+
+.fas, .fa-times {
+  height: 24px;
+  text-align: center; }
+
+.fa-play:hover {
+  color: #00b200 !important; }
+
+.fa-pause:hover {
+  color: #ffd200 !important; }
+
+.fa-times:hover {
+  color: red !important; }
+
+.logo {
+  font-family: 'Orbitron', 'Source Sans Pro', Arial, sans-serif; }
+
+.tooltip {
+  min-width: 80px;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #aaa;
+  text-align: center;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block !important; }
+
+.tooltip-left {
+  top: -2px;
+  right: 110%;
+  margin-right: 4px; }
+  .tooltip-left::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    margin-left: 1px;
+    /* avoids overlap tooltip-text border! */
+    border: 5px solid transparent;
+    border-left-color: #444; }
+
+.tooltip-bottom {
+  top: 125%;
+  left: -110%;
+  margin-left: 1px; }
+  .tooltip-bottom::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    margin-bottom: 1px;
+    border: 5px solid transparent;
+    border-bottom-color: #444; }
+
+.object-label {
+  font-size: small;
+  display: block;
+  position: absolute;
+  text-shadow: 0 0 10px #000;
+  top: 0;
+  left: 0; }
+
+/* ID STYLES */
+#loading-screen {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  z-index: 10000;
+  text-align: center; }
+  #loading-screen > * {
+    width: 250px;
+    display: block; }
+  #loading-screen p#loading-logo {
+    margin: 47vh auto 5px auto; }
+  #loading-screen p#loading-text {
+    margin: 5px auto 47vh auto;
+    font-size: 10pt; }
+    #loading-screen p#loading-text:after {
+      content: '.';
+      animation: dots 1s steps(5, end) infinite; }
+  #loading-screen progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0 auto;
+    animation: progress-indeterminate 1.5s linear infinite;
+    background: #4a4a4a linear-gradient(to right, #aaa 30%, #4a4a4a 30%) top left/150% 150% no-repeat;
+    border: 0;
+    height: 8px;
+    border-radius: 2px; }
+    #loading-screen progress::-webkit-progress-bar {
+      background: transparent !important; }
+    #loading-screen progress::-moz-progress-bar {
+      background: transparent !important; }
+@keyframes progress-indeterminate {
+  0% {
+    background-position: 200% 0; }
+  100% {
+    background-position: -200% 0; } }
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0, 0, 0, 0);
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0); }
+  40% {
+    color: #aaa;
+    text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0); }
+  60% {
+    text-shadow: 0.25em 0 0 #aaa, 0.5em 0 0 rgba(0, 0, 0, 0); }
+  80%, 100% {
+    text-shadow: 0.25em 0 0 #aaa, 0.5em 0 0 #aaa; } }
+#datetime-menu {
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top: none;
+  z-index: 1000; }
+  #datetime-menu #datetime-bar {
+    position: relative;
+    height: 24px; }
+    #datetime-menu #datetime-bar > div {
+      display: inline-block;
+      position: relative;
+      vertical-align: middle; }
+    #datetime-menu #datetime-bar #current-datetime {
+      margin-left: 5px;
+      margin-right: 5px;
+      line-height: 24px; }
+    #datetime-menu #datetime-bar > span {
+      line-height: 24px; }
+  #datetime-menu #datetime-settings {
+    width: 100%;
+    margin-top: 10px; }
+    #datetime-menu #datetime-settings br {
+      content: " ";
+      display: block;
+      margin: 5px 0 0 0;
+      line-height: 5px; }
+    #datetime-menu #datetime-settings #datetime-form {
+      text-align: center; }
+
+#settings-menu {
+  bottom: 0;
+  border-bottom: none;
+  border-right-style: none;
+  border-top-left-radius: 4px;
+  right: 0;
+  z-index: 1000; }
+  #settings-menu .logo {
+    margin: 0;
+    padding-bottom: 2px;
+    height: 24px;
+    line-height: 24px; }
+
+#look-at {
+  margin-bottom: 5px; }
+
+#scale-range {
+  margin-bottom: 10px; }
+
+#settings-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  text-align: center;
+  z-index: 2000; }
+
+#look-from-label, #follow-target-label {
+  display: none; }
+
+/*# sourceMappingURL=index.css.map */

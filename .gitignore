@@ -1,0 +1,11 @@
+.idea/
+
+*.lyx
+
+*.lyx~
+
+*.lyx#
+
+*.pdf
+
+report/
