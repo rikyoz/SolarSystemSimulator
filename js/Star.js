@@ -20,7 +20,7 @@ class Star extends SolarSysObj {
 
         // Corona (note: magic numbers were calculated "empirically")
         let coronaMaterial = new THREE.SpriteMaterial( {
-                                                              map : textureLoader.load( "./textures/lensFlare00.png" ),
+                                                              map : textureLoader.load( "./textures/lensFlare.png" ),
                                                               color : 0xFFFFFF,
                                                               transparent : true,
                                                               blending : THREE.AdditiveBlending
